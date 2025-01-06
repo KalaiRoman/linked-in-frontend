@@ -13,7 +13,7 @@
 
 # lib hide
 
-/lib
+/src/lib
 
 .env
 # misc
