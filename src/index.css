@@ -1,4 +1,10 @@
-body {
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
   margin: 0;
   font-family: "Poppins", serif;
   -webkit-font-smoothing: antialiased;

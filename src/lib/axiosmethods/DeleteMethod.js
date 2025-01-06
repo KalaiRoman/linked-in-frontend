@@ -1,9 +1,10 @@
-import axios from "axios";
+import axiosInstance from "../interceptor/Interceptor";
+
 const deleteMethod=async(url,id)=>
 {
     const Url=id?`${url}/${id}`:url;
     try {
-        const response=await axios.delete("");
+        const response=await axiosInstance.delete("");
         if(response)
         {
             return {

@@ -1,10 +1,9 @@
-import axios from "axios";
-
+import axiosInstance from "../interceptor/Interceptor";
 const postMethod=async(url,data,id)=>
 {
     const Url=id?`${url}/${id}`:url;
     try {
-        const response=await axios.post("");
+        const response=await axiosInstance.post("");
         if(response)
         {
             return {

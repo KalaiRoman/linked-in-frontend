@@ -1,10 +1,9 @@
-import axios from "axios";
-
+import axiosInstance from "../interceptor/Interceptor";
 const patchMethod=async(url,id,data)=>
 {
     const Url=id?`${url}/${id}`:url;
     try {
-        const response=await axios.patch("");
+        const response=await axiosInstance.patch("");
         if(response)
         {
             return {
