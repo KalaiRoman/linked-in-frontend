@@ -3,6 +3,7 @@ import Sidebar from '../Sidebar'
 import PostCreation from '../PostCreation'
 import Post from '../Post'
 import { Users } from "lucide-react";
+import RecommendedUser from '../RecommendedUser';
 
 function Home() {
   return (
@@ -57,16 +58,13 @@ function Home() {
       
       
 
-		{true&& (
+			{true && (
 				<div className='col-span-1 lg:col-span-1 hidden lg:block'>
 					<div className='bg-secondary rounded-lg shadow p-4'>
 						<h2 className='font-semibold mb-4'>People you may know</h2>
-						{/* {Array(100).fill("kalai")?.map((user) => (
-              return null;
-							// <RecommendedUse/r key={user._id} user={user} />
-						))} */}
-
-            welcome
+						{Array(10).fill("kalai")?.map((user) => (
+							<RecommendedUser key={user._id} user={user} />
+						))}
 					</div>
 				</div>
 			)}

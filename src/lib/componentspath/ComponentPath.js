@@ -1,9 +1,10 @@
+import { Home } from "../../pages/Pages";
 
 const componentsData=[
     {
         id:1,
         name:"Home",
-        component:"",
+        component:<Home/>,
         show:true,
         path:"/",
         exact:true,
@@ -11,7 +12,7 @@ const componentsData=[
     },
     {
         id:2,
-        name:"Home",
+        name:"Profile",
         component:"",
         show:true,
         path:"/",
