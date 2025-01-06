@@ -1,7 +1,13 @@
-import React from 'react'
+import Layout from './middleware/layout/Layout';
+import Routers from './router/Routers';
 function App() {
   return (
-    <div className='text-red-700'>App</div>
+    <div>
+      <Layout>
+      <Routers/>
+      </Layout>
+      
+    </div>
   )
 }
 
