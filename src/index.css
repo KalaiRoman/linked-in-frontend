@@ -11,3 +11,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+label
+{
+  color:#484848 !important;
+}

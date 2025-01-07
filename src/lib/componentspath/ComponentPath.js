@@ -6,19 +6,19 @@ const componentsData=[
         name:"Home",
         component:<Home/>,
         show:true,
-        path:"/",
+        path:"/home",
         exact:true,
         index:true
     },
-    {
-        id:2,
-        name:"Profile",
-        component:"",
-        show:true,
-        path:"/",
-        exact:true,
-        index:true
-    }
+    // {
+    //     id:2,
+    //     name:"Profile",
+    //     component:"",
+    //     show:true,
+    //     path:"/",
+    //     exact:true,
+    //     index:true
+    // }
 ]
 
 export default componentsData;

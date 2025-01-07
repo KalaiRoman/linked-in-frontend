@@ -8,10 +8,14 @@ const Login_reducer=createSlice({
     reducers:{
         LoginAction:(state,action)=>{
 
-        }
+        },
+        RegisterAction:(state,action)=>{
+            console.log(action.payload)
+        },
+
     }
 });
 
-export const {LoginAction}=Login_reducer.actions;
+export const {LoginAction,RegisterAction}=Login_reducer.actions;
 export default Login_reducer.reducer;
 

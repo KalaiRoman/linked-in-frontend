@@ -3,7 +3,7 @@ const postMethod=async(url,data,id)=>
 {
     const Url=id?`${url}/${id}`:url;
     try {
-        const response=await axiosInstance.post("");
+        const response=await axiosInstance.post(Url,data);
         if(response)
         {
             return {

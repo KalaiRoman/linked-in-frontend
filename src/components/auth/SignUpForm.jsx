@@ -1,19 +1,36 @@
 import { useState } from "react";
-import { toast } from "react-hot-toast";
 import { Loader } from "lucide-react";
-
+import { RegisterFormData } from "./FormData";
+import { ToastError } from "../../middleware/toastMessages/ToastMessage";
 const SignUpForm = () => {
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
+	const [user,setUser]=useState(RegisterFormData);
+	const handleChange=(e,id)=>{
+		const findSingleLabel=user?.map((item)=>{
+			if(item?.id===id)
+			{
+				return {...item,value:e.target.value}
+			}
+			else{
+				return item;
+			}
+		});
+		setUser(findSingleLabel)
+	}
+
 	const handleSignUp = (e) => {
 		e.preventDefault();
+		let showTrue;
+		user?.map((item,index)=>{
+			if(!item?.value?.length) return showTrue=true;
+		})
+		if(showTrue) ToastError("Please Enter All Fields!..");
+
+		
 	};
 
 	return (
-		<form onSubmit={handleSignUp} className='flex flex-col gap-4'>
-			<input
+		<div  className='flex flex-col gap-4'>
+			{/* <input
 				type='text'
 				placeholder='Full name'
 				value={name}
@@ -44,12 +61,34 @@ const SignUpForm = () => {
 				onChange={(e) => setPassword(e.target.value)}
 				className='input input-bordered w-full'
 				required
-			/>
+			/> */}
 
-			<button type='submit' disabled={false} className='btn btn-primary w-full text-white'>
-				{true ? <Loader className='size-5 animate-spin' /> : "Agree & Join"}
+
+			{user?.map((item,index)=>{
+				return(
+					<>
+					<label>{item?.label}</label>
+					
+					<input
+				type={item?.type}
+				placeholder={item?.placeholder}
+				value={item?.value}
+				onChange={(e)=>handleChange(e,item?.id)}
+				className='input input-bordered w-full'
+				required
+			/> 
+					
+					</>
+				)
+			})}
+
+			<button type='submit'
+			//  disabled={false} 
+			onClick={handleSignUp}
+			className='btn btn-primary w-full text-white'>
+				{false ? <Loader className='size-5 animate-spin' /> : "Agree & Join"}
 			</button>
-		</form>
+		</div>
 	);
 };
 export default SignUpForm;
