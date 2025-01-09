@@ -4,21 +4,13 @@ const getMethod=async(url,id)=>
 {
     const Url=id?`${url}/${id}`:url;
     try {
-        const response=await axiosInstance.get("");
+        const response=await axiosInstance.get(Url);
         if(response)
         {
-            return {
-                status:true,
-                message:"Get Method Success",
-                data:response
-            }
+           return response;
         }
     } catch (error) {
-        return {
-            status:false,
-            message:"Get Method Error",
-            data:""
-        }
+       return error;
     }
 }
 export default getMethod;

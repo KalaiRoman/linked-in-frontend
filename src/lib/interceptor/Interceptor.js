@@ -33,9 +33,9 @@ const axiosInstance = axios.create({
 });
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = sessionStorage.getItem("access-user-token"); 
+    const token = localStorage.getItem("userLinkedIn"); 
     if (token) {
-      config.headers["x-access-token"] = `${JSON.parse(token)}`;
+      config.headers["Authorization"] = `Bearer ${JSON.parse(token)}`;
     }
     return config;
   },

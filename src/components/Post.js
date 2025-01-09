@@ -5,7 +5,7 @@ import { formatDistanceToNow } from "date-fns";
 
 // import PostAction from "./PostAction";
 
-const Post = () => {
+const Post = ({post}) => {
 	const [showComments, setShowComments] = useState(false);
 	const [newComment, setNewComment] = useState("");
 	const [comments, setComments] = useState([]);
@@ -45,22 +45,20 @@ const Post = () => {
 					<div className='flex items-center'>
 						<Link to={`/profile`}>
 							<img
-								src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRD0hTTU92LhKyiEP87pA5uiXKDrkWoC1bvCQ&s" || "/avatar.png"}
-								// alt={post.author.name}
+								src={post?.user?.avatar}
+								alt={post.user.userName}
 								className='size-10 rounded-full mr-3'
 							/>
-
-                            image
 						</Link>
 
 						<div>
 							<Link to={`/profile`}>
-								<h3 className='font-semibold'>{"post.author.name"}</h3>
+								<h3 className='font-semibold'>{post.user.userName}</h3>
 							</Link>
 							<p className='text-xs text-info'>{"post.author.headline"}</p>
 							<p className='text-xs text-info'>
-                                Date
-								{/* {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })} */}
+                                
+								{formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}
 							</p>
 						</div>
 					</div>
@@ -70,8 +68,8 @@ const Post = () => {
 						</button>
 					)} */}
 				</div>
-				<p className='mb-4'>{"post.content"}</p>
-				{/* {post.image && <img src={post.image} alt='Post content' className='rounded-lg w-full mb-4' />} */}
+				<p className='mb-4'>{post?.title}</p>
+				{post.image && <img src={post.image} alt='Post content' className='rounded-lg w-full mb-4' />}
 
 				<div className='flex justify-between text-info'>
 					{/* <PostAction

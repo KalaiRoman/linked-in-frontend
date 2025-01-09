@@ -1,14 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Sidebar from '../Sidebar'
 import PostCreation from '../PostCreation'
 import Post from '../Post'
 import { Users } from "lucide-react";
 import RecommendedUser from '../RecommendedUser';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { UserIdAction } from '../../redux/reducers/Login_reducer';
+import { getPost_actions } from '../../redux/apicallActions/Post_Action_apis';
 
 function Home() {
+	const dispatch=useDispatch();
+	const state=useSelector((state)=>state?.login);
+	const postsData=useSelector((state)=>state?.posts?.posts);
 
-	// const dispatch=useDispatch();
+	console.log(postsData,"kalaiposts")
+
+	useEffect(()=>{
+dispatch(UserIdAction());
+dispatch(getPost_actions());
+	},[]);
   return (
     <div className='grid grid-cols-1 lg:grid-cols-4 gap-6'>
 			<div className='hidden lg:block lg:col-span-1'>
@@ -18,7 +28,7 @@ function Home() {
 			<div className='col-span-1 lg:col-span-2 order-first lg:order-none'>
 				<PostCreation user={"authUser"} />
 
-				{Array(10).fill("kalai")?.map((post) => (
+				{postsData?.map((post) => (
 					<Post key={post} post={post} />
 				))}
 
