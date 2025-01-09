@@ -6,9 +6,21 @@ export const RegisterUser=async(data)=>{
         const response=await postMethod(allApis?.register,data,"");
         if(response)
         {
-            return response;
+            return response?.data;
         }
     } catch (error) {
-        console.log(error);
+        return error;
+    }
+}
+
+export const LoginUser=async(data)=>{
+    try {
+        const response=await postMethod(allApis?.login,data,"");
+        if(response)
+        {
+            return response?.data;
+        }
+    } catch (error) {
+        return error;
     }
 }

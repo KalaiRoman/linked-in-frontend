@@ -3,21 +3,11 @@ const postMethod=async(url,data,id)=>
 {
     const Url=id?`${url}/${id}`:url;
     try {
-        const response=await axiosInstance.post(Url,data);
-        if(response)
-        {
-            return {
-                status:true,
-                message:"Post Method Success",
-                data:response
-            }
-        }
-    } catch (error) {
-        return {
-            status:false,
-            message:"Post Method Error",
-            data:""
-        }
-    }
+        const response = await axiosInstance.post(Url, data);
+        return response;      
+      } catch (error) {
+
+        return error;
+      }
 }
 export default postMethod;

@@ -1,13 +1,49 @@
 import { useState } from "react";
 import { Loader } from "lucide-react";
-
+import { ToastError } from "../../middleware/toastMessages/ToastMessage";
+import { LoginUser } from "../../services/login_services";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { RegisterAction } from "../../redux/reducers/Login_reducer";
 const LoginForm = () => {
+	const dispatch=useDispatch();
+	const navigate=useNavigate();
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [loading,setLoading]=useState(false);
+	const handleSubmit = async(e) => {
+		setLoading(true);
+		try {
+			e.preventDefault();
 
+		if(!username || !password)
+		{
+			ToastError("Please Enter All Fields!...");
+		}
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
+		if(username && password)
+		{
+			const data={
+				userNameOrEmailId:username,
+				password
+			}
+
+			const response=await LoginUser(data);
+				if(response.status)
+						{
+			localStorage.setItem("userLinkedIn",JSON.stringify(response?.token));
+			setTimeout(() => {
+				navigate("/home");
+			}, 800);
+			setLoading(false);
+						}
+	
+						dispatch(RegisterAction(response));
+			
+		}
+		} catch (error) {
+			setLoading(false);
+		}
 	};
 
 	return (
@@ -30,7 +66,7 @@ const LoginForm = () => {
 			/>
 
 			<button type='submit' className='btn btn-primary w-full'>
-				{true ? <Loader className='size-5 animate-spin' /> : "Login"}
+				{loading ? <Loader className='size-5 animate-spin' /> : "Login"}
 			</button>
 		</form>
 	);

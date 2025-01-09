@@ -1,6 +1,9 @@
 import { Navigate, Outlet } from "react-router-dom"
 
 const ProtectedRouter=()=>{
-  return false?<Outlet/>:<Navigate to="/"/>;
+
+  const token=JSON.parse(localStorage.getItem("userLinkedIn"));
+
+  return token?<Outlet/>:<Navigate to="/"/>;
 }
 export default ProtectedRouter;

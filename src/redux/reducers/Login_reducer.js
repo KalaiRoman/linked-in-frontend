@@ -1,21 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { jwtDecode } from "jwt-decode";
 const Login_reducer=createSlice({
     name:"Login",
     initialState:{
-        login:""
+        login:{},
+        userId:""
     },
     reducers:{
-        LoginAction:(state,action)=>{
-
-        },
         RegisterAction:(state,action)=>{
-            console.log(action.payload)
+           state.login=action.payload;
         },
+        UserIdAction:(state,action)=>{
+            const token=localStorage.getItem("userLinkedIn")?JSON.parse(localStorage.getItem("userLinkedIn")):"";
+            const decoded = jwtDecode(token);
+            console.log(decoded,"decoded")
+        }
+             
+          
 
     }
 });
 
-export const {LoginAction,RegisterAction}=Login_reducer.actions;
+export const {RegisterAction,UserIdAction}=Login_reducer.actions;
 export default Login_reducer.reducer;
 

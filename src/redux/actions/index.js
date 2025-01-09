@@ -1,7 +1,6 @@
-import { LoginAction } from "../reducers/Login_reducer";
-
+import  LoginActionReducer  from "../reducers/Login_reducer";
 const rootReducer={
-login:LoginAction
+login:LoginActionReducer
 }
 
 export default rootReducer;
